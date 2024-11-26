@@ -58,5 +58,45 @@ namespace GestionReservaciones
         {
         }
 
+        // Evento que se activa cuando se presiona el botón "Eliminar Historial"
+        private void btnEliminarHistorial_Click(object sender, EventArgs e)
+        {
+            // Solicita confirmación al usuario antes de eliminar el historial
+            var confirmResult = MessageBox.Show("¿Estás seguro de que quieres eliminar todo el historial?",
+                                                "Confirmar eliminación",
+                                                MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes) // Si el usuario confirma
+            {
+                // Limpia todas las reservaciones
+                reservaciones.Clear();
+
+                // Actualiza el DataGridView para reflejar los cambios
+                dgvReservaciones.DataSource = null; // Desvincula la fuente de datos
+                dgvReservaciones.Rows.Clear(); // Elimina todas las filas del DataGridView
+
+                // Muestra un mensaje confirmando la eliminación
+                MessageBox.Show("El historial ha sido eliminado correctamente.");
+            }
+        }
+
+        // Evento para cerrar la aplicación cuando se presiona el botón "Salir"
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // Cierra la aplicación
+        }
+
+        // Evento que se activa al hacer clic en el PictureBox (sin implementación en este momento)
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+        }
+
+        // Otro evento para cerrar la aplicación al presionar un botón (duplicado del anterior)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // Cierra la aplicación
+        }
+
+       
     }
 }
