@@ -145,6 +145,11 @@ namespace GestionReservaciones
             }
         }
 
-
+        // Evento para mostrar las reservaciones activas en el DataGridView
+        private void btnMostrarReservaciones_Click(object sender, EventArgs e)
+        {
+            dgvReservaciones.DataSource = null; // Limpia cualquier fuente de datos previa
+            dgvReservaciones.DataSource = reservaciones.Where(r => r.FechaSalida >= DateTime.Now).ToList(); // Filtra y muestra reservaciones futuras
+        }
     }
 }
