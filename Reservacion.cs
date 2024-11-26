@@ -8,6 +8,10 @@ namespace GestionReservaciones
 {
     public class Reservacion
     {
-
+        public int Id { get; set; }
+        public string NombreCliente { get; set; }
+        public string Habitacion { get; set; } 
+        public DateTime FechaIngreso { get; set; }
+        public DateTime FechaSalida { get; set; }
     }
 }
