@@ -97,6 +97,54 @@ namespace GestionReservaciones
             Application.Exit(); // Cierra la aplicación
         }
 
-       
+        // Evento para guardar una nueva reservación
+        private void btnGuardar_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Crea una nueva reservación con los datos ingresados en el formulario
+                Reservacion nuevaReservacion = new Reservacion
+                {
+                    Id = reservaciones.Count > 0 ? reservaciones.Max(r => r.Id) + 1 : 1, // Genera un nuevo ID único
+                    NombreCliente = txtNombreCliente.Text, // Obtiene el nombre del cliente
+                    Habitacion = cmbHabitacion.SelectedItem?.ToString(), // Obtiene la habitación seleccionada
+                    FechaIngreso = dtpIngreso.Value, // Obtiene la fecha de ingreso seleccionada
+                    FechaSalida = dtpSalida.Value // Obtiene la fecha de salida seleccionada
+                };
+
+                // Verifica que los campos obligatorios no estén vacíos
+                if (string.IsNullOrWhiteSpace(nuevaReservacion.NombreCliente) || string.IsNullOrWhiteSpace(nuevaReservacion.Habitacion))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.", "Error");
+                    return;
+                }
+
+                // Verifica que la fecha de salida sea posterior a la de ingreso
+                if (nuevaReservacion.FechaSalida <= nuevaReservacion.FechaIngreso)
+                {
+                    MessageBox.Show("La fecha de salida debe ser posterior a la fecha de ingreso.", "Error");
+                    return;
+                }
+
+                // Agrega la nueva reservación a la lista
+                reservaciones.Add(nuevaReservacion);
+
+                // Guarda las reservaciones actualizadas a través del gestor
+                gestorReservaciones.GuardarReservaciones(reservaciones);
+
+                // Notifica al usuario que la reservación fue guardada con éxito
+                MessageBox.Show("Reservación guardada con éxito.", "Éxito");
+
+                // Limpia los campos del formulario para ingresar una nueva reservación
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
+                // Muestra un mensaje de error en caso de excepción
+                MessageBox.Show($"Error: {ex.Message}", "Error");
+            }
+        }
+
+
     }
 }
