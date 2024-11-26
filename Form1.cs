@@ -27,6 +27,36 @@ namespace GestionReservaciones
             reservaciones = gestorReservaciones.LeerReservaciones();
         }
 
-      
+        // Evento que se activa cuando se presiona el botón "Guardar"
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            // Implementación pendiente
+        }
+
+        // Evento que se activa cuando se presiona el botón "Mostrar"
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            // Implementación pendiente
+        }
+
+        // Método para limpiar los campos del formulario después de realizar una acción
+        private void LimpiarCampos()
+        {
+            txtNombreCliente.Clear(); // Limpia el campo de texto para el nombre del cliente
+            cmbHabitacion.SelectedIndex = -1; // Deselecciona cualquier opción en el combo box
+            dtpIngreso.Value = DateTime.Now; // Restaura la fecha de ingreso al día actual
+            dtpSalida.Value = DateTime.Now.AddDays(1); // Establece la fecha de salida al día siguiente
+        }
+
+        // Evento que se activa al hacer clic en el título (sin implementación en este momento)
+        private void txtTitulo_Click(object sender, EventArgs e)
+        {
+        }
+
+        // Evento para manejar clics en las celdas del DataGridView (sin implementación en este momento)
+        private void dgvReservaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
     }
 }
